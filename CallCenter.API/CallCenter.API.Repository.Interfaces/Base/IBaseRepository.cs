@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace CallCenter.API.Repository.Interfaces.Base
 {
-    public interface IBaseRepository<TModel>
-        where TModel : class
+    public interface IBaseRepository<TEntity>
+        where TEntity : class
     {
-        IQueryable<TModel> QueryAll(DbContext context);
+        IQueryable<TEntity> QueryAll(DbContext context);
 
-        Task<IQueryable<TModel>> QueryAllAsync(DbContext context);
+        Task<IQueryable<TEntity>> QueryAllAsync(DbContext context);
 
-        IQueryable<TModel> QueryBy(DbContext context, Expression<Func<TModel, bool>> predicate);
+        IQueryable<TEntity> QueryBy(DbContext context, Expression<Func<TEntity, bool>> predicate);
 
-        Task<IQueryable<TModel>> QueryByAsync(DbContext context, Expression<Func<TModel, bool>> predicate);
+        Task<IQueryable<TEntity>> QueryByAsync(DbContext context, Expression<Func<TEntity, bool>> predicate);
     }
 }

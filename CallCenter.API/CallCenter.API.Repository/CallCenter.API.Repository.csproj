@@ -48,9 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseRepository.cs" />
+    <Compile Include="Base\CrudRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.API.DomainModel\CallCenter.API.DomainModel.csproj">
+      <Project>{7E58AA17-9D4E-4086-9C30-7FB94E0A787B}</Project>
+      <Name>CallCenter.API.DomainModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Repository.Interfaces\CallCenter.API.Repository.Interfaces.csproj">
       <Project>{A32CA7D5-DC9A-4A49-93B4-001F52B2DCCE}</Project>
       <Name>CallCenter.API.Repository.Interfaces</Name>

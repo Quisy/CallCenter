@@ -41,8 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\IBaseService.cs" />
-    <Compile Include="Base\IRepositoryService.cs" />
+    <Compile Include="Base\ICrudService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CallCenter.API.Utils\CallCenter.API.Utils.csproj">
+      <Project>{9648E2C2-E723-4D82-97CE-895CCA22D858}</Project>
+      <Name>CallCenter.API.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

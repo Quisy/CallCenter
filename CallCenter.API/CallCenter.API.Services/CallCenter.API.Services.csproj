@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,13 +44,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseService.cs" />
+    <Compile Include="Base\CrudService.cs" />
+    <Compile Include="Configuration\MapperModelsConfiguration.cs" />
+    <Compile Include="Helpers\Interfaces\IModelMapper.cs" />
+    <Compile Include="Helpers\ModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.API.DomainModel\CallCenter.API.DomainModel.csproj">
+      <Project>{7E58AA17-9D4E-4086-9C30-7FB94E0A787B}</Project>
+      <Name>CallCenter.API.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">
+      <Project>{A3D128A2-FBB3-453D-9791-56D996E72F0A}</Project>
+      <Name>CallCenter.API.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Repository.Interfaces\CallCenter.API.Repository.Interfaces.csproj">
+      <Project>{A32CA7D5-DC9A-4A49-93B4-001F52B2DCCE}</Project>
+      <Name>CallCenter.API.Repository.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Services.Interfaces\CallCenter.API.Services.Interfaces.csproj">
       <Project>{93AB145C-02C0-4A02-8745-AC3C8A6B20AE}</Project>
       <Name>CallCenter.API.Services.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Utils\CallCenter.API.Utils.csproj">
+      <Project>{9648E2C2-E723-4D82-97CE-895CCA22D858}</Project>
+      <Name>CallCenter.API.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

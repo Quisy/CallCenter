@@ -2,7 +2,7 @@
 
 namespace CallCenter.API.Services.Base
 {
-    public class BaseService : IBaseService
+    public abstract class BaseService : IBaseService
     {
     }
 }
