@@ -6,7 +6,7 @@ using CallCenter.API.Utils.Helpers.Interfaces;
 
 namespace CallCenter.API.Services.Base
 {
-    public abstract class CrudService<TModel, TRepository, TEntity> : ICrudService<TModel>
+    public abstract class CrudService<TModel, TRepository, TEntity> : BaseService, ICrudService<TModel>
         where TModel : class
         where TEntity : class
         where TRepository : ICrudRepository<TEntity>
