@@ -44,16 +44,21 @@
     <Compile Include="Base\IBaseService.cs" />
     <Compile Include="Base\ICrudService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Activiti\IProcessDefinitionService.cs" />
+    <Compile Include="Services\Activiti\IProcessInstanceService.cs" />
+    <Compile Include="Services\Activiti\ITaskService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">
+      <Project>{A3D128A2-FBB3-453D-9791-56D996E72F0A}</Project>
+      <Name>CallCenter.API.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Utils\CallCenter.API.Utils.csproj">
       <Project>{9648E2C2-E723-4D82-97CE-895CCA22D858}</Project>
       <Name>CallCenter.API.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Activiti\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
