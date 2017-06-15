@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace CallCenter.API.Services.Services.Activiti
 {
-    public class ProcessInstanceService : ApiService, IProcessInstanceService
+    public class ProcessInstanceService : ActivitiService, IProcessInstanceService
     {
         private const string RequestUri = "runtime/process-instances/";
 
@@ -36,10 +36,9 @@ namespace CallCenter.API.Services.Services.Activiti
                 var response = await client.SendAsync(requestMessage);
 
                 if (!response.IsSuccessStatusCode)
-                    return null;
+                    return Result<ProcessInstanceModel>.Error(response.ReasonPhrase);
 
                 var responseString = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(responseString);
 
                 var result = JsonConvert.DeserializeObject<ProcessInstanceModel>(responseString);
 

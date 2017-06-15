@@ -8,5 +8,7 @@ namespace CallCenter.API.Services.Interfaces.Services.Activiti
     public interface ITaskService : IApiService
     {
         Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(string instanceId);
+
+        Task<Result<bool>> CompleteTask(string taskId);
     }
 }

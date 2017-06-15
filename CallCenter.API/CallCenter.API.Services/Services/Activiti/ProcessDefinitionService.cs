@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace CallCenter.API.Services.Services.Activiti
 {
-    public class ProcessDefinitionService : ApiService, IProcessDefinitionService
+    public class ProcessDefinitionService : ActivitiService, IProcessDefinitionService
     {
         private const string RequestUri = "repository/process-definitions/";
 
@@ -30,10 +30,9 @@ namespace CallCenter.API.Services.Services.Activiti
                 var response = await client.SendAsync(requestMessage);
 
                 if (!response.IsSuccessStatusCode)
-                    return null;
+                    return Result<ProcessDefinitionModel>.Error(response.ReasonPhrase);
 
                 var responseString = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(responseString);
 
                 var processDefinitions = JsonConvert.DeserializeObject<List<ProcessDefinitionModel>>(responseString);
 

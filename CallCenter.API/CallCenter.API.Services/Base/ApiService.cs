@@ -6,10 +6,8 @@ namespace CallCenter.API.Services.Base
     {
         public string BaseUrl { get; set; }
 
-        public string GetBasicAuthorizationHeaderValue()
+        public string GetBasicAuthorizationHeaderValue(string username, string password)
         {
-            string username = "";
-            string password = "";
             return System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
         }
     }
