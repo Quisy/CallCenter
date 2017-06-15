@@ -9,6 +9,10 @@ namespace CallCenter.API.Domain.DataContext
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Message> Messages { get; set; }
+
         public CallCenterContext() : base("CallCenterContext")
         {
             Configuration.LazyLoadingEnabled = false;

@@ -75,6 +75,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\CallCenterContext.cs" />
+    <Compile Include="Migrations\201706151909078_Initialize.cs" />
+    <Compile Include="Migrations\201706151909078_Initialize.Designer.cs">
+      <DependentUpon>201706151909078_Initialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706151934010_AddCustomerEmployeeAndMessageTables.cs" />
+    <Compile Include="Migrations\201706151934010_AddCustomerEmployeeAndMessageTables.Designer.cs">
+      <DependentUpon>201706151934010_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +95,14 @@
       <Project>{7E58AA17-9D4E-4086-9C30-7FB94E0A787B}</Project>
       <Name>CallCenter.API.DomainModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706151909078_Initialize.resx">
+      <DependentUpon>201706151909078_Initialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706151934010_AddCustomerEmployeeAndMessageTables.resx">
+      <DependentUpon>201706151934010_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

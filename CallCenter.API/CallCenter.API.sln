@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Workers", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Workers.Interfaces", "CallCenter.API.Workers.Interfaces\CallCenter.API.Workers.Interfaces.csproj", "{BA75FF61-2376-4233-B663-4DF8CC55593D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Enums", "CallCenter.API.Enums\CallCenter.API.Enums.csproj", "{432987AC-256F-4EB0-B8E9-C4861EDE3885}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432987AC-256F-4EB0-B8E9-C4861EDE3885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432987AC-256F-4EB0-B8E9-C4861EDE3885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432987AC-256F-4EB0-B8E9-C4861EDE3885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432987AC-256F-4EB0-B8E9-C4861EDE3885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
