@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Activiti\ProcessDefinitionModel.cs" />
     <Compile Include="Activiti\ProcessInstanceModel.cs" />
+    <Compile Include="Activiti\TaskFormModel.cs" />
+    <Compile Include="Activiti\TaskFormProperty.cs" />
     <Compile Include="Activiti\TaskModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

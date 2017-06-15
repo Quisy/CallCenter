@@ -5,10 +5,8 @@ using CallCenter.API.Utils;
 
 namespace CallCenter.API.Services.Interfaces.Services.Activiti
 {
-    public interface ITaskService : IApiService
+    public interface ITaskFormService : IApiService
     {
-        Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(string instanceId);
-
-        Task<Result<bool>> CompleteTaskAsync(string taskId);
+        Task<Result<bool>> SubmitTaskFormDataAsync(TaskFormModel taskFormModel);
     }
 }

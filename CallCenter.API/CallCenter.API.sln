@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Web", "CallCenter.WebAPI\CallCenter.API.Web.csproj", "{1DB1E17C-19BB-4CE3-8453-14D535823447}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Models", "CallCenter.API.Models\CallCenter.API.Models.csproj", "{A3D128A2-FBB3-453D-9791-56D996E72F0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Utils", "CallCenter.API.Utils\CallCenter.API.Utils.csproj", "{9648E2C2-E723-4D82-97CE-895CCA22D858}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Workers", "CallCenter.API.Workers\CallCenter.API.Workers.csproj", "{98254FB3-1E1D-420D-BCEC-21943047E51A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.API.Workers.Interfaces", "CallCenter.API.Workers.Interfaces\CallCenter.API.Workers.Interfaces.csproj", "{BA75FF61-2376-4233-B663-4DF8CC55593D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{9648E2C2-E723-4D82-97CE-895CCA22D858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9648E2C2-E723-4D82-97CE-895CCA22D858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9648E2C2-E723-4D82-97CE-895CCA22D858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98254FB3-1E1D-420D-BCEC-21943047E51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98254FB3-1E1D-420D-BCEC-21943047E51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98254FB3-1E1D-420D-BCEC-21943047E51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98254FB3-1E1D-420D-BCEC-21943047E51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA75FF61-2376-4233-B663-4DF8CC55593D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

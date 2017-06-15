@@ -46,7 +46,7 @@ namespace CallCenter.API.Services.Services.Activiti
             }
         }
 
-        public async Task<Result<bool>> CompleteTask(string taskId)
+        public async Task<Result<bool>> CompleteTaskAsync(string taskId)
         {
             using (var client = new HttpClient())
             {
