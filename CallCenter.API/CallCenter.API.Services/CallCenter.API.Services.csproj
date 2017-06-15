@@ -52,12 +52,15 @@
     <Compile Include="Base\ApiService.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\CrudService.cs" />
+    <Compile Include="Base\FacebookService.cs" />
     <Compile Include="Configuration\MapperModelsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Activiti\ProcessDefinitionService.cs" />
     <Compile Include="Services\Activiti\ProcessInstanceService.cs" />
     <Compile Include="Services\Activiti\TaskFormService.cs" />
     <Compile Include="Services\Activiti\TaskService.cs" />
+    <Compile Include="Services\Facebook\ConversationService.cs" />
+    <Compile Include="Services\Facebook\MessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CallCenter.API.Constants\CallCenter.API.Constants.csproj">

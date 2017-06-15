@@ -5,7 +5,7 @@ using CallCenter.API.Utils;
 
 namespace CallCenter.API.Services.Interfaces.Services.Activiti
 {
-    public interface IProcessDefinitionService : IApiService
+    public interface IProcessDefinitionService : IActivitiService
     {
         Task<Result<ProcessDefinitionModel>> GetProcessDefinitionByNameAsync(string name);
     }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CallCenter.API.Services.Interfaces.Base;
 using CallCenter.API.Utils.Helpers.Interfaces;
 
 namespace CallCenter.API.Services.Base
 {
-    public abstract class ActivitiService : ApiService
+    public abstract class ActivitiService : ApiService, IActivitiService
     {
         private readonly string _activitiUsername;
         private readonly string _activitiPassword;

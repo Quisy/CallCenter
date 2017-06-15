@@ -40,14 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\IActivitiService.cs" />
     <Compile Include="Base\IApiService.cs" />
     <Compile Include="Base\IBaseService.cs" />
     <Compile Include="Base\ICrudService.cs" />
+    <Compile Include="Base\IFacebookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Activiti\IProcessDefinitionService.cs" />
     <Compile Include="Services\Activiti\IProcessInstanceService.cs" />
     <Compile Include="Services\Activiti\ITaskFormService.cs" />
     <Compile Include="Services\Activiti\ITaskService.cs" />
+    <Compile Include="Services\Facebook\IConversationService.cs" />
+    <Compile Include="Services\Facebook\IMessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">

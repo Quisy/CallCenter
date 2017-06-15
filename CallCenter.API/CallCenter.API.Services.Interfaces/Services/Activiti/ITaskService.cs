@@ -5,7 +5,7 @@ using CallCenter.API.Utils;
 
 namespace CallCenter.API.Services.Interfaces.Services.Activiti
 {
-    public interface ITaskService : IApiService
+    public interface ITaskService : IActivitiService
     {
         Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(string instanceId);
 

@@ -5,7 +5,7 @@ using CallCenter.API.Utils;
 
 namespace CallCenter.API.Services.Interfaces.Services.Activiti
 {
-    public interface IProcessInstanceService : IApiService
+    public interface IProcessInstanceService : IActivitiService
     {
         Task<Result<ProcessInstanceModel>> StartProcessInstanceByProcessDefinitionIdAsync(string processDefinitionId);
     }
