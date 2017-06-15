@@ -8,6 +8,7 @@ using CallCenter.API.Models.Activiti;
 using CallCenter.API.Services.Base;
 using CallCenter.API.Services.Interfaces.Services.Activiti;
 using CallCenter.API.Utils;
+using CallCenter.API.Utils.Helpers.Interfaces;
 using Newtonsoft.Json;
 
 namespace CallCenter.API.Services.Services.Activiti
@@ -15,6 +16,10 @@ namespace CallCenter.API.Services.Services.Activiti
     public class TaskService : ActivitiService, ITaskService
     {
         private const string RequestUri = "runtime/tasks";
+
+        public TaskService(ISettingsManager settingsManager) : base(settingsManager)
+        {
+        }
 
         public async Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(string instanceId)
         {
