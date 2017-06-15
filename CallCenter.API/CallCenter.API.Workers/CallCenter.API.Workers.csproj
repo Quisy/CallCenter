@@ -44,9 +44,17 @@
     <Compile Include="Workerks\ActivitiWorker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">
+      <Project>{A3D128A2-FBB3-453D-9791-56D996E72F0A}</Project>
+      <Name>CallCenter.API.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Services.Interfaces\CallCenter.API.Services.Interfaces.csproj">
       <Project>{93AB145C-02C0-4A02-8745-AC3C8A6B20AE}</Project>
       <Name>CallCenter.API.Services.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Utils\CallCenter.API.Utils.csproj">
+      <Project>{9648E2C2-E723-4D82-97CE-895CCA22D858}</Project>
+      <Name>CallCenter.API.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Workers.Interfaces\CallCenter.API.Workers.Interfaces.csproj">
       <Project>{BA75FF61-2376-4233-B663-4DF8CC55593D}</Project>
