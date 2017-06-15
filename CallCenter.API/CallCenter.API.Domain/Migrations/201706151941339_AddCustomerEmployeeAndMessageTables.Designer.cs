@@ -13,7 +13,7 @@ namespace CallCenter.API.Domain.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706151934010_AddCustomerEmployeeAndMessageTables"; }
+            get { return "201706151941339_AddCustomerEmployeeAndMessageTables"; }
         }
         
         string IMigrationMetadata.Source

@@ -79,9 +79,9 @@
     <Compile Include="Migrations\201706151909078_Initialize.Designer.cs">
       <DependentUpon>201706151909078_Initialize.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706151934010_AddCustomerEmployeeAndMessageTables.cs" />
-    <Compile Include="Migrations\201706151934010_AddCustomerEmployeeAndMessageTables.Designer.cs">
-      <DependentUpon>201706151934010_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
+    <Compile Include="Migrations\201706151941339_AddCustomerEmployeeAndMessageTables.cs" />
+    <Compile Include="Migrations\201706151941339_AddCustomerEmployeeAndMessageTables.Designer.cs">
+      <DependentUpon>201706151941339_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,8 +100,8 @@
     <EmbeddedResource Include="Migrations\201706151909078_Initialize.resx">
       <DependentUpon>201706151909078_Initialize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706151934010_AddCustomerEmployeeAndMessageTables.resx">
-      <DependentUpon>201706151934010_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706151941339_AddCustomerEmployeeAndMessageTables.resx">
+      <DependentUpon>201706151941339_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

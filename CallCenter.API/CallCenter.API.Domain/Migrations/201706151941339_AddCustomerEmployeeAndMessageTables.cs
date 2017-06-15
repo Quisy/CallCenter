@@ -12,11 +12,11 @@ namespace CallCenter.API.Domain.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ApplicationUserId = c.String(maxLength: 128),
+                        ApplicationUserId = c.String(nullable: false, maxLength: 128),
                         AccountBalance = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId, cascadeDelete: true)
                 .Index(t => t.ApplicationUserId);
             
             CreateTable(
@@ -24,12 +24,12 @@ namespace CallCenter.API.Domain.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ApplicationUserId = c.String(maxLength: 128),
+                        ApplicationUserId = c.String(nullable: false, maxLength: 128),
                         Status = c.Int(nullable: false),
                         ConversationId = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId, cascadeDelete: true)
                 .Index(t => t.ApplicationUserId);
             
             CreateTable(
@@ -37,13 +37,13 @@ namespace CallCenter.API.Domain.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ConversationId = c.String(),
+                        ConversationId = c.String(nullable: false),
                         Content = c.String(),
                         Date = c.DateTime(nullable: false),
-                        AuthorId = c.String(maxLength: 128),
+                        AuthorId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AuthorId)
+                .ForeignKey("dbo.AspNetUsers", t => t.AuthorId, cascadeDelete: true)
                 .Index(t => t.AuthorId);
             
         }
