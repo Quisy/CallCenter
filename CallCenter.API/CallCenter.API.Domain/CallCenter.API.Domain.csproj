@@ -83,6 +83,10 @@
     <Compile Include="Migrations\201706151941339_AddCustomerEmployeeAndMessageTables.Designer.cs">
       <DependentUpon>201706151941339_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706160843562_AddConversationsTable.cs" />
+    <Compile Include="Migrations\201706160843562_AddConversationsTable.Designer.cs">
+      <DependentUpon>201706160843562_AddConversationsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706151941339_AddCustomerEmployeeAndMessageTables.resx">
       <DependentUpon>201706151941339_AddCustomerEmployeeAndMessageTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706160843562_AddConversationsTable.resx">
+      <DependentUpon>201706160843562_AddConversationsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

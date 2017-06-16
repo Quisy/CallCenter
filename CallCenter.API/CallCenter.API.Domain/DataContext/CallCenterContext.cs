@@ -12,6 +12,7 @@ namespace CallCenter.API.Domain.DataContext
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
 
         public CallCenterContext() : base("CallCenterContext")
         {

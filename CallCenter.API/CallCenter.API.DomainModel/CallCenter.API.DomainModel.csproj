@@ -56,6 +56,7 @@
     <Compile Include="Base\KeyEntity.cs" />
     <Compile Include="DomainModels\ApplicationRole.cs" />
     <Compile Include="DomainModels\ApplicationUser.cs" />
+    <Compile Include="DomainModels\Conversation.cs" />
     <Compile Include="DomainModels\Customer.cs" />
     <Compile Include="DomainModels\Employee.cs" />
     <Compile Include="DomainModels\Message.cs" />
