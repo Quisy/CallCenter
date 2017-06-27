@@ -37,7 +37,7 @@ namespace CallCenter.API.Web
                 .LifestyleTransient());
 
             container.Register(Classes.FromAssemblyNamed("CallCenter.API.Services")
-                .InNamespace("CallCenter.API.Services.Services")
+                .BasedOn<CallCenter.API.Services.Base.BaseService>()
                 .WithServiceAllInterfaces()
                 .LifestyleTransient());
 
@@ -47,12 +47,17 @@ namespace CallCenter.API.Web
                 .LifestyleTransient());
 
             container.Register(Classes.FromAssemblyNamed("CallCenter.API.Repository")
-                .InNamespace("CallCenter.API.Repository")
+                .Where(t=>t.Namespace.StartsWith("CallCenter.API.Repository"))
                 .WithServiceAllInterfaces()
                 .LifestyleTransient());
 
             container.Register(Classes.FromAssemblyNamed("CallCenter.API.Utils")
                 .InNamespace("CallCenter.API.Utils.Helpers")
+                .WithServiceAllInterfaces()
+                .LifestyleTransient());
+
+            container.Register(Classes.FromAssemblyNamed("CallCenter.API.Workers")
+                .Where(t => t.Namespace.StartsWith("CallCenter.API.Workers"))
                 .WithServiceAllInterfaces()
                 .LifestyleTransient());
         }

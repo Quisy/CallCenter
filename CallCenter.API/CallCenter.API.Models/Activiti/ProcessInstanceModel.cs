@@ -8,7 +8,7 @@ namespace CallCenter.API.Models.Activiti
 {
     public class ProcessInstanceModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string BusinessKey { get; set; }
         public string ProcessDefinitionId { get; set; }
         public string ActivityId { get; set; }

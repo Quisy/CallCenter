@@ -60,6 +60,7 @@
     <Compile Include="Services\Activiti\TaskFormService.cs" />
     <Compile Include="Services\Activiti\TaskService.cs" />
     <Compile Include="Services\Conversation\ConversationService.cs" />
+    <Compile Include="Services\Conversation\MessageService.cs" />
     <Compile Include="Services\Facebook\ConversationService.cs" />
     <Compile Include="Services\Facebook\MessageService.cs" />
   </ItemGroup>

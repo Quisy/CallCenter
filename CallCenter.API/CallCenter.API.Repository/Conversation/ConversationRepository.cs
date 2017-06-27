@@ -19,7 +19,7 @@ namespace CallCenter.API.Repository.Conversation
             using (var context = new CallCenterContext())
             {
                 var conversation =
-                    context.Conversations.SingleOrDefault(c => c.FacebookConversationId.Equals(facebookConversationId));
+                    context.Conversations.Include(c => c.AssignedEmployee).Include(c => c.Messages).SingleOrDefault(c => c.FacebookConversationId.Equals(facebookConversationId));
 
                 return Result<DomainModel.DomainModels.Conversation>.ErrorWhenNoData(conversation);
             }

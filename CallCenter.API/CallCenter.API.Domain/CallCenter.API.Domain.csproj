@@ -87,6 +87,14 @@
     <Compile Include="Migrations\201706160843562_AddConversationsTable.Designer.cs">
       <DependentUpon>201706160843562_AddConversationsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706272009385_AddProcessInstantionIdColumnInConversations.cs" />
+    <Compile Include="Migrations\201706272009385_AddProcessInstantionIdColumnInConversations.Designer.cs">
+      <DependentUpon>201706272009385_AddProcessInstantionIdColumnInConversations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706272016583_AddFacebookMessageIdColumnInMessages.cs" />
+    <Compile Include="Migrations\201706272016583_AddFacebookMessageIdColumnInMessages.Designer.cs">
+      <DependentUpon>201706272016583_AddFacebookMessageIdColumnInMessages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706160843562_AddConversationsTable.resx">
       <DependentUpon>201706160843562_AddConversationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706272009385_AddProcessInstantionIdColumnInConversations.resx">
+      <DependentUpon>201706272009385_AddProcessInstantionIdColumnInConversations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706272016583_AddFacebookMessageIdColumnInMessages.resx">
+      <DependentUpon>201706272016583_AddFacebookMessageIdColumnInMessages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

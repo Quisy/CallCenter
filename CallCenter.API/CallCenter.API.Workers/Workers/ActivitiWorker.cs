@@ -4,7 +4,7 @@ using CallCenter.API.Services.Interfaces.Services.Activiti;
 using CallCenter.API.Utils;
 using CallCenter.API.Workers.Interfaces.Workers;
 
-namespace CallCenter.API.Workers.Workerks
+namespace CallCenter.API.Workers.Workers
 {
     public class ActivitiWorker : IActivitiWorker
     {

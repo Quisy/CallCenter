@@ -10,6 +10,7 @@ using CallCenter.API.Services.Interfaces.Services.Facebook;
 using CallCenter.API.Utils;
 using CallCenter.API.Utils.Helpers.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CallCenter.API.Services.Services.Facebook
 {
@@ -25,7 +26,7 @@ namespace CallCenter.API.Services.Services.Facebook
             {
                 client.BaseAddress = new Uri(base.BaseUrl);
 
-                string requestUrl = $"{pageId}/Conversations?access_token={AccessToken}";
+                string requestUrl = $"{pageId}/conversations?access_token={AccessToken}";
                 HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
 
                 var response = await client.SendAsync(requestMessage);
@@ -33,9 +34,10 @@ namespace CallCenter.API.Services.Services.Facebook
                 if (!response.IsSuccessStatusCode)
                     return Result<IList<ConversationModel>>.Error(response.ReasonPhrase);
 
+               
                 var responseString = await response.Content.ReadAsStringAsync();
-
-                var conversations = JsonConvert.DeserializeObject<IList<ConversationModel>>(responseString);
+                var data = (JObject)JsonConvert.DeserializeObject(responseString);
+                var conversations = JsonConvert.DeserializeObject<List<ConversationModel>>(data["data"].ToString());
 
                 var result = conversations.Where(x => x.UnreadCount > 0).ToList();
 

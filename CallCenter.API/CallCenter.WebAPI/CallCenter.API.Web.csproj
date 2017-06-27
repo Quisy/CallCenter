@@ -132,6 +132,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\WindsorConfiguration.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <Compile Include="Startup.cs" />
@@ -147,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +166,14 @@
     <ProjectReference Include="..\CallCenter.API.Services\CallCenter.API.Services.csproj">
       <Project>{C901509E-876C-47AD-8DBC-67970BBAC05E}</Project>
       <Name>CallCenter.API.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Workers.Interfaces\CallCenter.API.Workers.Interfaces.csproj">
+      <Project>{BA75FF61-2376-4233-B663-4DF8CC55593D}</Project>
+      <Name>CallCenter.API.Workers.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Workers\CallCenter.API.Workers.csproj">
+      <Project>{98254fb3-1e1d-420d-bcec-21943047e51a}</Project>
+      <Name>CallCenter.API.Workers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

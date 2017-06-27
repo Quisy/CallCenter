@@ -8,6 +8,8 @@ namespace CallCenter.API.DomainModel.DomainModels
     {
         public int ConversationId { get; set; }
 
+        public string FacebookMessageId { get; set; }
+
         public string Content { get; set; }
 
         public DateTime Date { get; set; }

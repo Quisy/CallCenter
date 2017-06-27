@@ -8,6 +8,7 @@ using CallCenter.API.Services.Interfaces.Services.Facebook;
 using CallCenter.API.Utils;
 using CallCenter.API.Utils.Helpers.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CallCenter.API.Services.Services.Facebook
 {
@@ -32,8 +33,8 @@ namespace CallCenter.API.Services.Services.Facebook
                     return Result<IList<MessageModel>>.Error(response.ReasonPhrase);
 
                 var responseString = await response.Content.ReadAsStringAsync();
-
-                var result = JsonConvert.DeserializeObject<IList<MessageModel>>(responseString);
+                var data = (JObject)JsonConvert.DeserializeObject(responseString);
+                var result = JsonConvert.DeserializeObject<IList<MessageModel>>(data["data"].ToString());
 
                 return Result<IList<MessageModel>>.ErrorWhenNoData(result);
             }

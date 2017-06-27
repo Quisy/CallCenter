@@ -11,12 +11,13 @@ using CallCenter.API.Services.Interfaces.Services.Activiti;
 using CallCenter.API.Utils;
 using CallCenter.API.Utils.Helpers.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CallCenter.API.Services.Services.Activiti
 {
     public class ProcessDefinitionService : ActivitiService, IProcessDefinitionService
     {
-        private const string RequestUri = "repository/process-definitions/";
+        private const string RequestUri = "service/repository/process-definitions/";
 
         public ProcessDefinitionService(ISettingsManager settingsManager) : base(settingsManager)
         {
@@ -38,8 +39,8 @@ namespace CallCenter.API.Services.Services.Activiti
                     return Result<ProcessDefinitionModel>.Error(response.ReasonPhrase);
 
                 var responseString = await response.Content.ReadAsStringAsync();
-
-                var processDefinitions = JsonConvert.DeserializeObject<List<ProcessDefinitionModel>>(responseString);
+                var data = (JObject)JsonConvert.DeserializeObject(responseString);
+                var processDefinitions = JsonConvert.DeserializeObject<List<ProcessDefinitionModel>>(data["data"].ToString());
 
                 var result = processDefinitions.SingleOrDefault(x => x.Name.Equals(name));
 

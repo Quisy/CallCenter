@@ -16,7 +16,7 @@ namespace CallCenter.API.Services.Services.Activiti
 {
     public class ProcessInstanceService : ActivitiService, IProcessInstanceService
     {
-        private const string RequestUri = "runtime/process-instances/";
+        private const string RequestUri = "service/runtime/process-instances/";
 
         public ProcessInstanceService(ISettingsManager settingsManager) : base(settingsManager)
         {
@@ -32,9 +32,7 @@ namespace CallCenter.API.Services.Services.Activiti
 
                 requestMessage.Headers.Add("Authorization", base.GetBasicAuthorizationHeaderValue());
 
-                var requestBodyModel = new ProcessInstanceModel{ ProcessDefinitionId = processDefinitionId };
-
-                string jsonData = JsonConvert.SerializeObject(requestBodyModel);
+                string jsonData = @"{""processDefinitionId"":""" + processDefinitionId + @"""}";
                 requestMessage.Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
                 var response = await client.SendAsync(requestMessage);
