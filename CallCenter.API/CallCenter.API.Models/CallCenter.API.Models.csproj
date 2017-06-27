@@ -49,12 +49,21 @@
     <Compile Include="Activiti\TaskFormModel.cs" />
     <Compile Include="Activiti\TaskFormProperty.cs" />
     <Compile Include="Activiti\TaskModel.cs" />
+    <Compile Include="Conversation\ConversationModel.cs" />
+    <Compile Include="Conversation\MessageModel.cs" />
     <Compile Include="Facebook\ConversationModel.cs" />
     <Compile Include="Facebook\MessageModel.cs" />
+    <Compile Include="Membership\EmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CallCenter.API.Enums\CallCenter.API.Enums.csproj">
+      <Project>{432987AC-256F-4EB0-B8E9-C4861EDE3885}</Project>
+      <Name>CallCenter.API.Enums</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,5 +8,6 @@ namespace CallCenter.API.Enums
 {
     public enum ConversationStatus
     {
+        None = 0
     }
 }

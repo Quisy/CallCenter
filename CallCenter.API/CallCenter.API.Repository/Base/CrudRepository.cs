@@ -13,7 +13,10 @@ namespace CallCenter.API.Repository.Base
         where TEntity : KeyEntity, new()
         where TContext : DbContext, new()
     {
-        //protected abstract IQueryable<TEntity> QueryAll(TContext context);
+        protected virtual IQueryable<TEntity> QueryAll(TContext context)
+        {
+            return base.QueryAll(context);
+        }
 
         public virtual TEntity Add(TEntity entity)
         {

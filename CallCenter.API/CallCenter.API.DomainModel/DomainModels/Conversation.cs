@@ -1,4 +1,5 @@
-﻿using CallCenter.API.DomainModel.Base;
+﻿using System.Collections.Generic;
+using CallCenter.API.DomainModel.Base;
 using CallCenter.API.Enums;
 
 namespace CallCenter.API.DomainModel.DomainModels
@@ -11,5 +12,11 @@ namespace CallCenter.API.DomainModel.DomainModels
         public TalkProcessTask ProcessTask { get; set; }
 
         public Employee AssignedEmployee { get; set; }
+        public IList<Message> Messages { get; set; }
+
+        public Conversation()
+        {
+            Messages = new List<Message>();
+        }
     }
 }

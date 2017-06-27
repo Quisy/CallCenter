@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using CallCenter.API.Web.Providers;
+using Castle.Windsor;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
@@ -14,8 +15,16 @@ namespace CallCenter.API.Web
         {
             ConfigureOAuth(app);
 
+            AutoMapperConfiguration.Configure();
+
+            var container = new WindsorContainer().Install(
+                new ControllerInstaller(),
+                new DefaultInstaller());
+            var httpDependencyResolver = new WindsorHttpDependencyResolver(container);
+
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
+            config.DependencyResolver = httpDependencyResolver;
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }

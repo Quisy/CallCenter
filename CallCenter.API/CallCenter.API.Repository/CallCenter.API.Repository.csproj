@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseRepository.cs" />
     <Compile Include="Base\CrudRepository.cs" />
+    <Compile Include="Conversation\ConversationRepository.cs" />
     <Compile Include="Membership\AuthorizationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\CallCenter.API.Repository.Interfaces\CallCenter.API.Repository.Interfaces.csproj">
       <Project>{A32CA7D5-DC9A-4A49-93B4-001F52B2DCCE}</Project>
       <Name>CallCenter.API.Repository.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Utils\CallCenter.API.Utils.csproj">
+      <Project>{9648E2C2-E723-4D82-97CE-895CCA22D858}</Project>
+      <Name>CallCenter.API.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

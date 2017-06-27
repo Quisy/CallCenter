@@ -50,6 +50,7 @@
     <Compile Include="Services\Activiti\IProcessInstanceService.cs" />
     <Compile Include="Services\Activiti\ITaskFormService.cs" />
     <Compile Include="Services\Activiti\ITaskService.cs" />
+    <Compile Include="Services\Conversation\IConversationService.cs" />
     <Compile Include="Services\Facebook\IConversationService.cs" />
     <Compile Include="Services\Facebook\IMessageService.cs" />
   </ItemGroup>
