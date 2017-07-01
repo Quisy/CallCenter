@@ -82,7 +82,18 @@ namespace CallCenter.API.Workers.Workers
                 var conversationFbMessages = fbMessagesResult.Value;
                 var conversationMessages = messagesResult.Value;
 
-                if (conversationFbMessages.Where(fbm=>fbm.CreatedTime > conversationMessages.Last().Date).Any(fbm => !conversationMessages.Select(m => m.FacebookMessageId)
+                var lastFbMessage = conversationFbMessages.SingleOrDefault(fbm => fbm.Id.Equals(conversationMessages.Last()
+                    .FacebookMessageId));
+
+                if(lastFbMessage == null)
+                    continue;
+
+                conversationFbMessages = conversationFbMessages.OrderBy(m => m.CreatedTime).ToList();
+
+                if (conversationFbMessages.IndexOf(lastFbMessage) == conversationFbMessages.Count-1)
+                    continue;
+
+                if (conversationFbMessages.Skip(conversationFbMessages.IndexOf(lastFbMessage)).Any(fbm => !conversationMessages.Select(m => m.FacebookMessageId)
                     .Contains(fbm.Id)))
                 {
                     if (conversation.ProcessInstanceId.HasValue)
