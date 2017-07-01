@@ -54,6 +54,7 @@
     <Compile Include="Services\Conversation\IMessageService.cs" />
     <Compile Include="Services\Facebook\IConversationService.cs" />
     <Compile Include="Services\Facebook\IMessageService.cs" />
+    <Compile Include="Services\Membership\ICustomerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">

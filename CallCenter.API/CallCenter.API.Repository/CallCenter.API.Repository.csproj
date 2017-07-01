@@ -58,6 +58,7 @@
     <Compile Include="Conversation\ConversationRepository.cs" />
     <Compile Include="Conversation\MessageRepository.cs" />
     <Compile Include="Membership\AuthorizationRepository.cs" />
+    <Compile Include="Membership\CustomerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

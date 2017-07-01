@@ -10,18 +10,19 @@ using CallCenter.API.Services.Interfaces.Services.Activiti;
 using CallCenter.API.Utils;
 using CallCenter.API.Utils.Helpers.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CallCenter.API.Services.Services.Activiti
 {
     public class TaskService : ActivitiService, ITaskService
     {
-        private const string RequestUri = "runtime/tasks";
+        private const string RequestUri = "service/runtime/tasks";
 
         public TaskService(ISettingsManager settingsManager) : base(settingsManager)
         {
         }
 
-        public async Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(string instanceId)
+        public async Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(int instanceId)
         {
             using (var client = new HttpClient())
             {
@@ -37,10 +38,10 @@ namespace CallCenter.API.Services.Services.Activiti
                     return Result<TaskModel>.Error(response.ReasonPhrase);
 
                 var responseString = await response.Content.ReadAsStringAsync();
+                var data = (JObject)JsonConvert.DeserializeObject(responseString);
+                var tasks = JsonConvert.DeserializeObject<List<TaskModel>>(data["data"].ToString());
 
-                var tasks = JsonConvert.DeserializeObject<List<TaskModel>>(responseString);
-
-                var result = tasks.SingleOrDefault(x => x.ProcessInstanceId.Equals(instanceId));
+                var result = tasks.SingleOrDefault(x => x.ProcessInstanceId.Equals(instanceId.ToString()));
 
                 return Result<TaskModel>.ErrorWhenNoData(result);
             }

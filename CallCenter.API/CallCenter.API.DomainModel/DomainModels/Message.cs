@@ -14,7 +14,6 @@ namespace CallCenter.API.DomainModel.DomainModels
 
         public DateTime Date { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
         public ApplicationUser Author { get; set; }

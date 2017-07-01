@@ -7,7 +7,7 @@ namespace CallCenter.API.Services.Interfaces.Services.Activiti
 {
     public interface ITaskService : IActivitiService
     {
-        Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(string instanceId);
+        Task<Result<TaskModel>> GetCurrentTaskForInstanceByIdAsync(int instanceId);
 
         Task<Result<bool>> CompleteTaskAsync(string taskId);
     }

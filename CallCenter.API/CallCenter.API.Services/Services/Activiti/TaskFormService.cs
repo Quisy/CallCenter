@@ -8,12 +8,13 @@ using CallCenter.API.Services.Interfaces.Services.Activiti;
 using CallCenter.API.Utils;
 using CallCenter.API.Utils.Helpers.Interfaces;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace CallCenter.API.Services.Services.Activiti
 {
     public class TaskFormService : ActivitiService, ITaskFormService
     {
-        private const string RequestUri = "form/form-data";
+        private const string RequestUri = "service/form/form-data";
 
         public TaskFormService(ISettingsManager settingsManager) : base(settingsManager)
         {
@@ -29,7 +30,10 @@ namespace CallCenter.API.Services.Services.Activiti
 
                 requestMessage.Headers.Add("Authorization", base.GetBasicAuthorizationHeaderValue());
 
-                string jsonData = JsonConvert.SerializeObject(taskFormModel);
+                string jsonData = JsonConvert.SerializeObject(taskFormModel, new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                });
                 requestMessage.Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
                 var response = await client.SendAsync(requestMessage);

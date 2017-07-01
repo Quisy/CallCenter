@@ -37,23 +37,28 @@ namespace CallCenter.API.Workers.Workers
             return Result<ProcessInstanceModel>.ErrorWhenNoData(processInstanceResult.Value);
         }
 
-        public async Task<Result<TaskModel>> CompleteTaskSubmittingFormAndGetNextAsync(string processInstanceId, TaskFormModel taskFormModel)
+        public async Task<Result<TaskModel>> CompleteTaskSubmittingFormAndGetNextAsync(int processInstanceId, TaskFormModel taskFormModel)
         {
             var formSubmitResult = await _taskFormService.SubmitTaskFormDataAsync(taskFormModel);
 
             if (formSubmitResult.IsError)
                 return Result<TaskModel>.Error(formSubmitResult.Messages);
 
-            return await this.CompleteTaskAndGetNextAsync(processInstanceId, taskFormModel.TaskId);
+            return await this.GetCurrentTaskForInstance(processInstanceId);
         }
 
-        public async Task<Result<TaskModel>> CompleteTaskAndGetNextAsync(string processInstanceId, string taskId)
+        public async Task<Result<TaskModel>> CompleteTaskAndGetNextAsync(int processInstanceId, string taskId)
         {
             var completeTaskResult = await _taskService.CompleteTaskAsync(taskId);
 
             if (completeTaskResult.IsError)
                 return Result<TaskModel>.Error(completeTaskResult.Messages);
 
+            return await GetCurrentTaskForInstance(processInstanceId);
+        }
+
+        public async Task<Result<TaskModel>> GetCurrentTaskForInstance(int processInstanceId)
+        {
             var nextTaskResult = await _taskService.GetCurrentTaskForInstanceByIdAsync(processInstanceId);
 
             if (nextTaskResult.IsError)

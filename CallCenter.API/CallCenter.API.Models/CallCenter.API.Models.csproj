@@ -53,6 +53,7 @@
     <Compile Include="Conversation\MessageModel.cs" />
     <Compile Include="Facebook\ConversationModel.cs" />
     <Compile Include="Facebook\MessageModel.cs" />
+    <Compile Include="Membership\CustomerModel.cs" />
     <Compile Include="Membership\EmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -33,12 +33,25 @@
     <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,6 +76,7 @@
     <Compile Include="Services\Conversation\MessageService.cs" />
     <Compile Include="Services\Facebook\ConversationService.cs" />
     <Compile Include="Services\Facebook\MessageService.cs" />
+    <Compile Include="Services\Membership\CustomerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CallCenter.API.Constants\CallCenter.API.Constants.csproj">
@@ -72,6 +86,10 @@
     <ProjectReference Include="..\CallCenter.API.DomainModel\CallCenter.API.DomainModel.csproj">
       <Project>{7E58AA17-9D4E-4086-9C30-7FB94E0A787B}</Project>
       <Name>CallCenter.API.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Enums\CallCenter.API.Enums.csproj">
+      <Project>{432987AC-256F-4EB0-B8E9-C4861EDE3885}</Project>
+      <Name>CallCenter.API.Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">
       <Project>{A3D128A2-FBB3-453D-9791-56D996E72F0A}</Project>
@@ -91,6 +109,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

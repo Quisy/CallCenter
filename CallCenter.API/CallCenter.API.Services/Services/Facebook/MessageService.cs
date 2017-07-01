@@ -24,7 +24,7 @@ namespace CallCenter.API.Services.Services.Facebook
             {
                 client.BaseAddress = new Uri(base.BaseUrl);
 
-                string requestUrl = $"{conversationId}/messages?access_token={AccessToken}";
+                string requestUrl = $"{conversationId}/messages?fields=message,created_time&access_token={AccessToken}";
                 HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
 
                 var response = await client.SendAsync(requestMessage);

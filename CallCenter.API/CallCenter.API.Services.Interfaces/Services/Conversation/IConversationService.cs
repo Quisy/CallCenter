@@ -7,6 +7,7 @@ namespace CallCenter.API.Services.Interfaces.Services.Conversation
 {
     public interface IConversationService : ICrudService<ConversationModel>
     {
+        Result<ConversationModel> AddNewConversation(string facebookConversationId, int processInstanceId);
         Result<ConversationModel> GetConversationByFacebookCnversationId(string facebookConversationId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using CallCenter.API.Models.Conversation;
+﻿using CallCenter.API.Enums;
+using CallCenter.API.Models.Conversation;
 using CallCenter.API.Repository.Interfaces.Conversation;
 using CallCenter.API.Services.Base;
 using CallCenter.API.Services.Interfaces.Services.Conversation;
@@ -11,6 +12,20 @@ namespace CallCenter.API.Services.Services.Conversation
     {
         public ConversationService(IConversationRepository repository, IModelMapper modelMapper) : base(repository, modelMapper)
         {
+
+        }
+
+        public Result<ConversationModel> AddNewConversation(string facebookConversationId, int processInstanceId)
+        {
+            var conversation = new ConversationModel
+            {
+                FacebookConversationId = facebookConversationId,
+                ProcessInstanceId = processInstanceId,
+                ProcessTask = TalkProcessTask.Manager,
+                Status = ConversationStatus.None
+            };
+
+            return base.Add(conversation);
         }
 
         public Result<ConversationModel> GetConversationByFacebookCnversationId(string facebookConversationId)

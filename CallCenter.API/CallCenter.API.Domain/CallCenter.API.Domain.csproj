@@ -95,6 +95,10 @@
     <Compile Include="Migrations\201706272016583_AddFacebookMessageIdColumnInMessages.Designer.cs">
       <DependentUpon>201706272016583_AddFacebookMessageIdColumnInMessages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707010959115_MessageAuthorIdNullable.cs" />
+    <Compile Include="Migrations\201707010959115_MessageAuthorIdNullable.Designer.cs">
+      <DependentUpon>201707010959115_MessageAuthorIdNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706272016583_AddFacebookMessageIdColumnInMessages.resx">
       <DependentUpon>201706272016583_AddFacebookMessageIdColumnInMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707010959115_MessageAuthorIdNullable.resx">
+      <DependentUpon>201707010959115_MessageAuthorIdNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
