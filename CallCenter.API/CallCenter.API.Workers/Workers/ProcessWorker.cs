@@ -68,15 +68,7 @@ namespace CallCenter.API.Workers.Workers
 
                     var addedConversation = conversationAddResult.Value;
 
-                    var fbMesageResult = await _facebbokMessageService.SendMessageToConversation(fbConversation.Id, "1-GetData, 2-Coversation");
-
-                    if (fbMesageResult.IsError)
-                        continue;
-
-                    var fbMessage = fbMesageResult.Value;
-
-                    var messageAddResult = _messageService.AddMessageToConversation(addedConversation.Id,
-                        "1-GetData, 2-Coversation", fbMessage.Id);
+                    await this.SendMessage(addedConversation, "1-GetData, 2-Coversation");
                 }
 
                 var conversation = conversationResult.Value;
@@ -90,7 +82,7 @@ namespace CallCenter.API.Workers.Workers
                 var conversationFbMessages = fbMessagesResult.Value;
                 var conversationMessages = messagesResult.Value;
 
-                if (conversationFbMessages.Any(fbm => !conversationMessages.Select(m => m.FacebookMessageId)
+                if (conversationFbMessages.Where(fbm=>fbm.CreatedTime > conversationMessages.Last().Date).Any(fbm => !conversationMessages.Select(m => m.FacebookMessageId)
                     .Contains(fbm.Id)))
                 {
                     if (conversation.ProcessInstanceId.HasValue)
@@ -118,15 +110,7 @@ namespace CallCenter.API.Workers.Workers
 
                         _conversationService.Update(conversation);
 
-                        var fbMesageResult = await _facebbokMessageService.SendMessageToConversation(fbConversation.Id, "1-GetData, 2-Coversation");
-
-                        if (fbMesageResult.IsError)
-                            continue;
-
-                        var fbMessage = fbMesageResult.Value;
-
-                        var messageAddResult = _messageService.AddMessageToConversation(conversation.Id,
-                            "1-GetData, 2-Coversation", fbMessage.Id);
+                        await this.SendMessage(conversation, "1-GetData, 2-Coversation");
                     }
                 }
 
@@ -168,9 +152,10 @@ namespace CallCenter.API.Workers.Workers
                 case TalkProcessTask.None:
                     break;
                 case TalkProcessTask.CheckPass:
-                    await _facebbokMessageService.SendMessageToConversation(conversation.FacebookConversationId, "Pass login and password (login/password)");
+                    await this.SendMessage(conversation, "Pass login and password (login/password)");
                     break;
                 case TalkProcessTask.ReturnData:
+                    await ReturnData(conversation, task);
                     break;
                 case TalkProcessTask.CheckAdviser:
                     break;
@@ -277,6 +262,8 @@ namespace CallCenter.API.Workers.Workers
                         }
                     }
                 };
+
+                conversation.CustomerId = customerResult.Value.Id;
             }
 
             var nextTaskResult = await _activitiWorker.CompleteTaskSubmittingFormAndGetNextAsync((int)conversation.ProcessInstanceId, form);
@@ -286,5 +273,36 @@ namespace CallCenter.API.Workers.Workers
             _conversationService.Update(conversation);
             await ChangeTask(conversation, nextTask);
         }
+
+        private async Task ReturnData(Models.Conversation.ConversationModel conversation, TaskModel task)
+        {
+            var cutomerResult = _customerService.GetById((int)conversation.CustomerId);
+
+            if (cutomerResult.IsError)
+                return;
+
+            await this.SendMessage(conversation, $"Account balance: {cutomerResult.Value.AccountBalance}");
+
+            await _activitiWorker.CompleteTaskAndGetNextAsync((int)conversation.ProcessInstanceId, task.Id);
+
+            conversation.CustomerId = null;
+            conversation.ProcessInstanceId = null;
+            conversation.ProcessTask = TalkProcessTask.None;
+            _conversationService.Update(conversation);
+        }
+
+        private async Task SendMessage(Models.Conversation.ConversationModel conversation, string message)
+        {
+            var fbMesageResult = await _facebbokMessageService.SendMessageToConversation(conversation.FacebookConversationId, message);
+
+            if (fbMesageResult.IsError)
+                return;
+
+            var fbMessage = fbMesageResult.Value;
+
+            _messageService.AddMessageToConversation(conversation.Id,
+                message, fbMessage.Id);
+        }
+
     }
 }

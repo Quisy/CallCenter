@@ -34,7 +34,5 @@ namespace CallCenter.API.Services.Services.Membership
             
 
         }
-
-        
     }
 }

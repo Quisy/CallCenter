@@ -99,6 +99,10 @@
     <Compile Include="Migrations\201707010959115_MessageAuthorIdNullable.Designer.cs">
       <DependentUpon>201707010959115_MessageAuthorIdNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707011542248_AddCustomerIdColumnToConversationsTable.cs" />
+    <Compile Include="Migrations\201707011542248_AddCustomerIdColumnToConversationsTable.Designer.cs">
+      <DependentUpon>201707011542248_AddCustomerIdColumnToConversationsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707010959115_MessageAuthorIdNullable.resx">
       <DependentUpon>201707010959115_MessageAuthorIdNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707011542248_AddCustomerIdColumnToConversationsTable.resx">
+      <DependentUpon>201707011542248_AddCustomerIdColumnToConversationsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

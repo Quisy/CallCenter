@@ -11,8 +11,10 @@ namespace CallCenter.API.DomainModel.DomainModels
         public ConversationStatus Status { get; set; }
         public TalkProcessTask ProcessTask { get; set; }
         public int? ProcessInstanceId { get; set; }
+        public int? CustomerId { get; set; }
 
         public Employee AssignedEmployee { get; set; }
+        public Customer Customer { get; set; }
         public IList<Message> Messages { get; set; }
 
         public Conversation()

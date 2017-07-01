@@ -8,6 +8,8 @@ namespace CallCenter.API.Models.Membership
 {
     public class CustomerModel
     {
+        public int Id { get; set; }
+
         public string ApplicationUserId { get; set; }
 
         public decimal AccountBalance { get; set; }
