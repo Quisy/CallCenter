@@ -6,6 +6,8 @@ namespace CallCenter.API.Models.Membership
 {
     public class EmployeeModel
     {
+        public int Id { get; set; }
+
         public string ApplicationUserId { get; set; }
         public EmployeeStatus Status { get; set; }
 

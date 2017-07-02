@@ -59,6 +59,7 @@
     <Compile Include="Conversation\MessageRepository.cs" />
     <Compile Include="Membership\AuthorizationRepository.cs" />
     <Compile Include="Membership\CustomerRepository.cs" />
+    <Compile Include="Membership\EmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\CallCenter.API.Domain\CallCenter.API.Domain.csproj">
       <Project>{C96E72CA-A67A-4730-9362-238D949826DF}</Project>
       <Name>CallCenter.API.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Enums\CallCenter.API.Enums.csproj">
+      <Project>{432987AC-256F-4EB0-B8E9-C4861EDE3885}</Project>
+      <Name>CallCenter.API.Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Repository.Interfaces\CallCenter.API.Repository.Interfaces.csproj">
       <Project>{A32CA7D5-DC9A-4A49-93B4-001F52B2DCCE}</Project>

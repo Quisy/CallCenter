@@ -77,6 +77,7 @@
     <Compile Include="Services\Facebook\ConversationService.cs" />
     <Compile Include="Services\Facebook\MessageService.cs" />
     <Compile Include="Services\Membership\CustomerService.cs" />
+    <Compile Include="Services\Membership\EmployeeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CallCenter.API.Constants\CallCenter.API.Constants.csproj">

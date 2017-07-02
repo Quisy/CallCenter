@@ -22,8 +22,9 @@ namespace CallCenter.API.Workers.Workers
         private readonly Services.Interfaces.Services.Conversation.IMessageService _messageService;
         private readonly IActivitiWorker _activitiWorker;
         private readonly ICustomerService _customerService;
+        private readonly IEmployeeService _employeeService;
 
-        public ProcessWorker(Services.Interfaces.Services.Facebook.IConversationService facebookConversationService, Services.Interfaces.Services.Conversation.IConversationService conversationService, ISettingsManager settingsManager, IMessageService messageService, IActivitiWorker activitiWorker, Services.Interfaces.Services.Conversation.IMessageService messageService1, ICustomerService customerService)
+        public ProcessWorker(Services.Interfaces.Services.Facebook.IConversationService facebookConversationService, Services.Interfaces.Services.Conversation.IConversationService conversationService, ISettingsManager settingsManager, IMessageService messageService, IActivitiWorker activitiWorker, Services.Interfaces.Services.Conversation.IMessageService messageService1, ICustomerService customerService, IEmployeeService employeeService)
         {
             _facebookConversationService = facebookConversationService;
             _conversationService = conversationService;
@@ -32,6 +33,7 @@ namespace CallCenter.API.Workers.Workers
             _activitiWorker = activitiWorker;
             _messageService = messageService1;
             _customerService = customerService;
+            _employeeService = employeeService;
         }
 
         public async Task GetFacebookConversationsAndManage()
@@ -69,6 +71,8 @@ namespace CallCenter.API.Workers.Workers
                     var addedConversation = conversationAddResult.Value;
 
                     await this.SendMessage(addedConversation, "1-GetData, 2-Coversation");
+
+                    continue;
                 }
 
                 var conversation = conversationResult.Value;
@@ -85,12 +89,12 @@ namespace CallCenter.API.Workers.Workers
                 var lastFbMessage = conversationFbMessages.SingleOrDefault(fbm => fbm.Id.Equals(conversationMessages.Last()
                     .FacebookMessageId));
 
-                if(lastFbMessage == null)
+                if (lastFbMessage == null)
                     continue;
 
                 conversationFbMessages = conversationFbMessages.OrderBy(m => m.CreatedTime).ToList();
 
-                if (conversationFbMessages.IndexOf(lastFbMessage) == conversationFbMessages.Count-1)
+                if (conversationFbMessages.IndexOf(lastFbMessage) == conversationFbMessages.Count - 1)
                     continue;
 
                 if (conversationFbMessages.Skip(conversationFbMessages.IndexOf(lastFbMessage)).Any(fbm => !conversationMessages.Select(m => m.FacebookMessageId)
@@ -144,10 +148,13 @@ namespace CallCenter.API.Workers.Workers
                 case TalkProcessTask.ReturnData:
                     break;
                 case TalkProcessTask.CheckAdviser:
+                    await CheckAdviser(conversation, task);
                     break;
                 case TalkProcessTask.AttachToAdviser:
+                    await AttachToAdviser(conversation, task);
                     break;
                 case TalkProcessTask.Conversation:
+                    await Conversation(conversation, task);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -184,15 +191,18 @@ namespace CallCenter.API.Workers.Workers
             var messagesResult = await _facebbokMessageService.GetConversationMessages(conversation.FacebookConversationId);
 
             var messages = messagesResult.Value;
+          
 
             string message = messages.FirstOrDefault()?.Message;
 
             if (message == null)
                 return;
 
+            TaskFormModel form = new TaskFormModel();
+
             if (message.Trim().Equals("1"))
             {
-                var form = new TaskFormModel
+                form = new TaskFormModel
                 {
                     TaskId = task.Id,
                     Properties = new List<TaskFormProperty>
@@ -204,21 +214,29 @@ namespace CallCenter.API.Workers.Workers
                         }
                     }
                 };
-
-                var nextTaskResult = await _activitiWorker.CompleteTaskSubmittingFormAndGetNextAsync((int)conversation.ProcessInstanceId, form);
-                var nextTask = nextTaskResult.Value;
-                conversation.ProcessTask = nextTask.ProcessTask;
-                conversation.Messages = null;
-                _conversationService.Update(conversation);
-                await ChangeTask(conversation, nextTask);
             }
             else if (message.Trim().Equals("2"))
             {
-
+                form = new TaskFormModel
+                {
+                    TaskId = task.Id,
+                    Properties = new List<TaskFormProperty>
+                    {
+                        new TaskFormProperty
+                        {
+                            Id = "status",
+                            Value = "rozmowa"
+                        }
+                    }
+                };
             }
 
-
-            //await _facebbokMessageService.SendMessageToConversation(conversation.FacebookConversationId, "test message");
+            var nextTaskResult = await _activitiWorker.CompleteTaskSubmittingFormAndGetNextAsync((int)conversation.ProcessInstanceId, form);
+            var nextTask = nextTaskResult.Value;
+            conversation.ProcessTask = nextTask.ProcessTask;
+            conversation.Messages = null;
+            _conversationService.Update(conversation);
+            await ChangeTask(conversation, nextTask);
         }
 
         private async Task CheckPass(Models.Conversation.ConversationModel conversation, TaskModel task)
@@ -300,6 +318,112 @@ namespace CallCenter.API.Workers.Workers
             conversation.ProcessInstanceId = null;
             conversation.ProcessTask = TalkProcessTask.None;
             _conversationService.Update(conversation);
+        }
+
+        private async Task CheckAdviser(Models.Conversation.ConversationModel conversation, TaskModel task)
+        {
+            var employeeResult = _employeeService.GetAvailableEmployee();
+            TaskFormModel form;
+
+
+            if (employeeResult.IsWarning || employeeResult.IsError)
+            {
+                await this.SendMessage(conversation, "No available consultant found, try again later.");
+
+                form = new TaskFormModel
+                {
+                    TaskId = task.Id,
+                    Properties = new List<TaskFormProperty>
+                    {
+                        new TaskFormProperty
+                        {
+                            Id = "isAvailable",
+                            Value = "false"
+                        }
+                    }
+                };
+
+                await _activitiWorker.CompleteTaskSubmittingFormAndGetNextAsync((int)conversation.ProcessInstanceId, form);
+
+                conversation.CustomerId = null;
+                conversation.ProcessInstanceId = null;
+                conversation.ProcessTask = TalkProcessTask.None;
+                _conversationService.Update(conversation);
+            }
+            else
+            {
+                form = new TaskFormModel
+                {
+                    TaskId = task.Id,
+                    Properties = new List<TaskFormProperty>
+                    {
+                        new TaskFormProperty
+                        {
+                            Id = "isAvailable",
+                            Value = "true"
+                        }
+                    }
+                };
+
+                var nextTaskResult = await _activitiWorker.CompleteTaskSubmittingFormAndGetNextAsync((int)conversation.ProcessInstanceId, form);
+                var nextTask = nextTaskResult.Value;
+                conversation.ProcessTask = nextTask.ProcessTask;
+                conversation.Messages = null;
+                _conversationService.Update(conversation);
+                await ChangeTask(conversation, nextTask);
+            }
+
+           
+        }
+
+        private async Task AttachToAdviser(Models.Conversation.ConversationModel conversation, TaskModel task)
+        {
+            var employeeResult = _employeeService.GetAvailableEmployee();
+
+            var employee = employeeResult.Value;
+
+            var nextTaskResult = await _activitiWorker.CompleteTaskAndGetNextAsync((int)conversation.ProcessInstanceId, task.Id);
+            var nextTask = nextTaskResult.Value;
+            conversation.ProcessTask = nextTask.ProcessTask;
+            conversation.AssignedEmployeeId = employee.Id;
+            conversation.Messages = null;
+            _conversationService.Update(conversation);
+
+            employee.Status = EmployeeStatus.Busy;
+            _employeeService.Update(employee);
+
+            await this.SendMessage(conversation, "Wait for message from consultant");
+
+            await ChangeTask(conversation, nextTask);
+
+        }
+
+        private async Task Conversation(Models.Conversation.ConversationModel conversation, TaskModel task)
+        {
+            var fbMessagesResult = await _facebbokMessageService.GetConversationMessages(conversation.FacebookConversationId);
+            var messagesResult = _messageService.GetMessagesToForConversation(conversation.Id);
+
+            if (fbMessagesResult.IsError || messagesResult.IsError)
+                return;
+
+            var conversationFbMessages = fbMessagesResult.Value;
+            var conversationMessages = messagesResult.Value;
+
+            var lastFbMessage = conversationFbMessages.SingleOrDefault(fbm => fbm.Id.Equals(conversationMessages.Last()
+                .FacebookMessageId));
+
+            if (lastFbMessage == null)
+                return;
+
+            conversationFbMessages = conversationFbMessages.OrderBy(m => m.CreatedTime).ToList();
+
+            var newMessages = conversationFbMessages.Skip(conversationFbMessages.IndexOf(lastFbMessage)).ToList();
+
+            foreach (var messaage in newMessages)
+            {
+                _messageService.AddMessageToConversation(conversation.Id,
+                    messaage.Message, messaage.Id);
+            }
         }
 
         private async Task SendMessage(Models.Conversation.ConversationModel conversation, string message)

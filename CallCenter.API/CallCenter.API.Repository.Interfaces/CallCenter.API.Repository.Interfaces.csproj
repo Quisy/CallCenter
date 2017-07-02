@@ -57,6 +57,7 @@
     <Compile Include="Base\ICrudRepository.cs" />
     <Compile Include="Conversation\IConversationRepository.cs" />
     <Compile Include="Conversation\IMessageRepository.cs" />
+    <Compile Include="Membership\IEmployeeRepository.cs" />
     <Compile Include="Membership\ICustomerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Membership\IAuthorizationRepository.cs" />
