@@ -8,7 +8,7 @@ namespace CallCenter.Client.Utils.Helpers.Interfaces
 {
     public interface IAppSettingsProvider
     {
-        void Save();
-        void Load();
+        void Save(string key, string value);
+        string Load(string key);
     }
 }

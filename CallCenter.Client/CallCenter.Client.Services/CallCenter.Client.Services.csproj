@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,12 +45,28 @@
   <ItemGroup>
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LoginService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.Client.Constants\CallCenter.Client.Constants.csproj">
+      <Project>{6b0187d1-5686-4c6b-9a29-18ab3689d28a}</Project>
+      <Name>CallCenter.Client.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Models\CallCenter.Client.Models.csproj">
+      <Project>{B0613BC7-4F54-4C56-8F03-7C463F788A1C}</Project>
+      <Name>CallCenter.Client.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.Client.Services.Interfaces\CallCenter.Client.Services.Interfaces.csproj">
       <Project>{66841249-14ED-453E-8CE4-D92EEB0A2EE0}</Project>
       <Name>CallCenter.Client.Services.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Utils\CallCenter.Client.Utils.csproj">
+      <Project>{71BE20C2-9699-4D73-84ED-66095F749706}</Project>
+      <Name>CallCenter.Client.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

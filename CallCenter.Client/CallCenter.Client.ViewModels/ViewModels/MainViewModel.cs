@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CallCenter.Client.Enums;
+using CallCenter.Client.Services.Interfaces.Services;
+using CallCenter.Client.Utils.Helpers.Interfaces;
 using CallCenter.Client.ViewModels.Helpers.Interfaces;
 using CallCenter.Client.ViewModels.ViewModels.Base;
 using CallCenter.Client.ViewModels.ViewModels.Conversation;
@@ -13,11 +15,16 @@ namespace CallCenter.Client.ViewModels.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private readonly IAppSettingsProvider _appSettingsProvider;
+        private readonly ILoginService _loginService;
+
         public LoginViewModel LoginViewModel { get; set; }
         public PanelViewModel PanelViewModel { get; set; }
 
-        public MainViewModel(IContainerManager containerManager) : base(containerManager)
+        public MainViewModel(IContainerManager containerManager, IAppSettingsProvider appSettingsProvider, ILoginService loginService) : base(containerManager)
         {
+            _appSettingsProvider = appSettingsProvider;
+            _loginService = loginService;
         }
 
         protected override void OnInitialize()
@@ -29,9 +36,16 @@ namespace CallCenter.Client.ViewModels.ViewModels
             base.ActivatePage(LoginViewModel);
         }
 
-        public void Login()
+        public async void Login()
         {
-            base.ActivatePage(PanelViewModel);
+            var result = await _loginService.Login(LoginViewModel.Username, LoginViewModel.Password);
+
+            if (result != null)
+            {
+                _appSettingsProvider.Save(Constants.AppSettings.UserTokenKeyName, result.Token);
+                base.ActivatePage(PanelViewModel);
+            }
+               
         }
     }
 }

@@ -17,15 +17,15 @@ namespace CallCenter.Client.Utils.Helpers
             _configuration = configurationProvider.Configuration;
         }
 
-        public void Save()
+        public void Save(string key, string value)
         {
-            //_configuration.AppSettings.Settings[nameof(ReleaseDirectoryPath)].Value = ReleaseDirectoryPath;
+            _configuration.AppSettings.Settings[key].Value = value;
             _configuration.Save(ConfigurationSaveMode.Modified);
         }
 
-        public void Load()
+        public string Load(string key)
         {
-            //ReleaseDirectoryPath = _configuration.AppSettings.Settings[nameof(ReleaseDirectoryPath)].Value;
+           return _configuration.AppSettings.Settings[key].Value;
         }
     }
 }

@@ -10,9 +10,9 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Username"></TextBlock>
-            <TextBox Width="200"></TextBox>
+            <TextBox Text="{Binding Username}" Width="200"></TextBox>
             <TextBlock Text="Password"></TextBlock>
-            <TextBox Width="200" ></TextBox>
+            <TextBox Text="{Binding Password}" Width="200" ></TextBox>
             <Button cal:Message.Attach="Login()" Content="Login"></Button>
         </StackPanel>
         
