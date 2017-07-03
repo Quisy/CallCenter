@@ -12,7 +12,6 @@ namespace CallCenter.Client.Utils.Helpers
     {
         private readonly System.Configuration.Configuration _configuration;
 
-
         public AppSettingsProvider(IConfigurationProvider configurationProvider)
         {
             _configuration = configurationProvider.Configuration;

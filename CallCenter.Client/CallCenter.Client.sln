@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.Client.ViewModels", "CallCenter.Client.ViewModels\CallCenter.Client.ViewModels.csproj", "{2F3FD465-EBD7-45AF-AEC6-89F27DAFC203}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.Client.Utils", "CallCenter.Client.Utils\CallCenter.Client.Utils.csproj", "{71BE20C2-9699-4D73-84ED-66095F749706}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.Client.WinApp", "CallCenter.Client.WinApp\CallCenter.Client.WinApp.csproj", "{E292DB01-2D94-4F2C-9B7E-DC39BD849AEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenter.Client.Enums", "CallCenter.Client.Enums\CallCenter.Client.Enums.csproj", "{5F0E742A-9240-4B08-AD98-94E026A9930F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{E292DB01-2D94-4F2C-9B7E-DC39BD849AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E292DB01-2D94-4F2C-9B7E-DC39BD849AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E292DB01-2D94-4F2C-9B7E-DC39BD849AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F0E742A-9240-4B08-AD98-94E026A9930F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F0E742A-9240-4B08-AD98-94E026A9930F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F0E742A-9240-4B08-AD98-94E026A9930F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F0E742A-9240-4B08-AD98-94E026A9930F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
