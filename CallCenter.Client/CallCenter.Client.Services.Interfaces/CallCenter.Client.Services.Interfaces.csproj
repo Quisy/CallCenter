@@ -42,9 +42,14 @@
   <ItemGroup>
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IEmployeeService.cs" />
     <Compile Include="Services\ILoginService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.Client.Enums\CallCenter.Client.Enums.csproj">
+      <Project>{5F0E742A-9240-4B08-AD98-94E026A9930F}</Project>
+      <Name>CallCenter.Client.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.Client.Models\CallCenter.Client.Models.csproj">
       <Project>{B0613BC7-4F54-4C56-8F03-7C463F788A1C}</Project>
       <Name>CallCenter.Client.Models</Name>

@@ -173,6 +173,10 @@
       <Project>{7E58AA17-9D4E-4086-9C30-7FB94E0A787B}</Project>
       <Name>CallCenter.API.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Enums\CallCenter.API.Enums.csproj">
+      <Project>{432987AC-256F-4EB0-B8E9-C4861EDE3885}</Project>
+      <Name>CallCenter.API.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">
       <Project>{a3d128a2-fbb3-453d-9791-56d996e72f0a}</Project>
       <Name>CallCenter.API.Models</Name>

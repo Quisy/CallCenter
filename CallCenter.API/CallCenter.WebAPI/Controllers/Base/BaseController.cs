@@ -9,9 +9,7 @@ namespace CallCenter.API.Web.Controllers.Base
 {
     public class BaseController : ApiController
     {
-        protected string GetUserId()
-        {
-            return User.Identity.GetUserId();
-        }
+        public string UserId => HttpContext.Current.User.Identity.GetUserId();
+
     }
 }

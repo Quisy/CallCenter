@@ -18,6 +18,7 @@ namespace CallCenter.Client.ViewModels.ViewModels
         private readonly IAppSettingsProvider _appSettingsProvider;
         private readonly ILoginService _loginService;
 
+
         public LoginViewModel LoginViewModel { get; set; }
         public PanelViewModel PanelViewModel { get; set; }
 
@@ -26,6 +27,8 @@ namespace CallCenter.Client.ViewModels.ViewModels
             _appSettingsProvider = appSettingsProvider;
             _loginService = loginService;
         }
+
+       
 
         protected override void OnInitialize()
         {
