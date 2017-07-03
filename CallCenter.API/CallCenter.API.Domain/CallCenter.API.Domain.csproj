@@ -103,6 +103,10 @@
     <Compile Include="Migrations\201707011542248_AddCustomerIdColumnToConversationsTable.Designer.cs">
       <DependentUpon>201707011542248_AddCustomerIdColumnToConversationsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707031415170_AddIsSystemMessageColumnToMessagesTable.cs" />
+    <Compile Include="Migrations\201707031415170_AddIsSystemMessageColumnToMessagesTable.Designer.cs">
+      <DependentUpon>201707031415170_AddIsSystemMessageColumnToMessagesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707011542248_AddCustomerIdColumnToConversationsTable.resx">
       <DependentUpon>201707011542248_AddCustomerIdColumnToConversationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707031415170_AddIsSystemMessageColumnToMessagesTable.resx">
+      <DependentUpon>201707031415170_AddIsSystemMessageColumnToMessagesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

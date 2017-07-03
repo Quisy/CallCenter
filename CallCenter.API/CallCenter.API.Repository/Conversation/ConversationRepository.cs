@@ -14,6 +14,17 @@ namespace CallCenter.API.Repository.Conversation
             return base.QueryAll(context).Include(c=>c.AssignedEmployee).Include(c => c.Messages);
         }
 
+        public Result<DomainModel.DomainModels.Conversation> GetConversationForEmployee(int employeeId)
+        {
+            using (var context = new CallCenterContext())
+            {
+                var conversation =
+                    context.Conversations.SingleOrDefault(c => c.AssignedEmployeeId == employeeId);
+
+                return Result<DomainModel.DomainModels.Conversation>.ErrorWhenNoData(conversation);
+            }
+        }
+
         public Result<DomainModel.DomainModels.Conversation> GetConversationByFacebookCnversationId(string facebookConversationId)
         {
             using (var context = new CallCenterContext())

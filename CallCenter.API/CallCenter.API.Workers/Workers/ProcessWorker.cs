@@ -417,7 +417,7 @@ namespace CallCenter.API.Workers.Workers
 
             conversationFbMessages = conversationFbMessages.OrderBy(m => m.CreatedTime).ToList();
 
-            var newMessages = conversationFbMessages.Skip(conversationFbMessages.IndexOf(lastFbMessage)).ToList();
+            var newMessages = conversationFbMessages.Skip(conversationFbMessages.IndexOf(lastFbMessage) + 1).ToList();
 
             foreach (var messaage in newMessages)
             {

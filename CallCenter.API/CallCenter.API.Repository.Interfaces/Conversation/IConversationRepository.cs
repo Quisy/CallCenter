@@ -5,6 +5,7 @@ namespace CallCenter.API.Repository.Interfaces.Conversation
 {
     public interface IConversationRepository : ICrudRepository<DomainModel.DomainModels.Conversation>
     {
+        Result<DomainModel.DomainModels.Conversation> GetConversationForEmployee(int employeeId);
         Result<DomainModel.DomainModels.Conversation> GetConversationByFacebookCnversationId(string facebookConversationId);
     }
 }

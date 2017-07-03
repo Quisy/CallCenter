@@ -11,8 +11,10 @@ namespace CallCenter.API.Services.Interfaces.Services.Conversation
 {
     public interface IMessageService : ICrudService<MessageModel>
     {
-        Result<MessageModel> AddMessageToConversation(int conversationId, string message, string fbMessageId);
+        Result<MessageModel> AddMessageToConversation(int conversationId, string message, string fbMessageId, string authorId = null);
 
         Result<IList<MessageModel>> GetMessagesToForConversation(int conversationId);
+
+        Result<IList<MessageModel>> GetMessagesForConversationFromDate(int conversationId, DateTime date);
     }
 }

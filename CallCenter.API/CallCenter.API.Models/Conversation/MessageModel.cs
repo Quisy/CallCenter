@@ -18,6 +18,8 @@ namespace CallCenter.API.Models.Conversation
 
         public string AuthorId { get; set; }
 
+        public bool IsSystemMessage { get; set; }
+
         //public ApplicationUser Author { get; set; }
         public ConversationModel Conversation { get; set; }
     }

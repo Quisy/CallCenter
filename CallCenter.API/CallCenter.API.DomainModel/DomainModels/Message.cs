@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using CallCenter.API.DomainModel.Base;
 
@@ -15,6 +16,9 @@ namespace CallCenter.API.DomainModel.DomainModels
         public DateTime Date { get; set; }
 
         public string AuthorId { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsSystemMessage { get; set; }
 
         public ApplicationUser Author { get; set; }
         public Conversation Conversation { get; set; }

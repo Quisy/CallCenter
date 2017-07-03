@@ -15,6 +15,16 @@ namespace CallCenter.API.Services.Services.Conversation
 
         }
 
+        public Result<ConversationModel> GetConversationAssignedToEmployee(int employeeId)
+        {
+            var result = Repository.GetConversationForEmployee(employeeId);
+
+            if(result.IsError)
+                return Result<ConversationModel>.Error(result.Messages);
+
+            return Result<ConversationModel>.ErrorWhenNoData(ModelMapper.MapSingle<DomainModel.DomainModels.Conversation, ConversationModel>(result.Value));
+        }
+
         public Result<ConversationModel> AddNewConversation(string facebookConversationId, int processInstanceId)
         {
             var conversation = new ConversationModel

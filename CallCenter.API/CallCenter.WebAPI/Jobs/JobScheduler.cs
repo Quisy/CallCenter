@@ -23,7 +23,7 @@ namespace CallCenter.API.Web.Jobs
                 .WithIdentity("trigger1", "group1")
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(5)
+                    .WithIntervalInSeconds(10)
                     .RepeatForever())
                 .Build();
 

@@ -141,6 +141,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\WindsorConfiguration.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\ConversationController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Jobs\JobScheduler.cs" />
     <Compile Include="Jobs\ProcessJob.cs" />
@@ -169,6 +172,10 @@
       <Project>{7E58AA17-9D4E-4086-9C30-7FB94E0A787B}</Project>
       <Name>CallCenter.API.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Models\CallCenter.API.Models.csproj">
+      <Project>{a3d128a2-fbb3-453d-9791-56d996e72f0a}</Project>
+      <Name>CallCenter.API.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Repository.Interfaces\CallCenter.API.Repository.Interfaces.csproj">
       <Project>{a32ca7d5-dc9a-4a49-93b4-001f52b2dcce}</Project>
       <Name>CallCenter.API.Repository.Interfaces</Name>
@@ -177,9 +184,21 @@
       <Project>{b2715aa2-56f2-42b9-99c2-270b18a66cba}</Project>
       <Name>CallCenter.API.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Services.Interfaces\CallCenter.API.Services.Interfaces.csproj">
+      <Project>{93AB145C-02C0-4A02-8745-AC3C8A6B20AE}</Project>
+      <Name>CallCenter.API.Services.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Services\CallCenter.API.Services.csproj">
       <Project>{C901509E-876C-47AD-8DBC-67970BBAC05E}</Project>
       <Name>CallCenter.API.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.Utils\CallCenter.API.Utils.csproj">
+      <Project>{9648e2c2-e723-4d82-97ce-895cca22d858}</Project>
+      <Name>CallCenter.API.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.API.ViewModels\CallCenter.API.ViewModels.csproj">
+      <Project>{1f6e1037-6dc0-4b04-a494-d3434a14cb86}</Project>
+      <Name>CallCenter.API.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\CallCenter.API.Workers.Interfaces\CallCenter.API.Workers.Interfaces.csproj">
       <Project>{BA75FF61-2376-4233-B663-4DF8CC55593D}</Project>
