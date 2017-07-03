@@ -12,7 +12,7 @@ using CallCenter.API.Web.Controllers.Base;
 namespace CallCenter.API.Web.Controllers
 {
     [Authorize]
-    [RoutePrefix("message")]
+    [RoutePrefix("api/message")]
     public class MessageController : BaseController
     {
         private readonly IMessageService _messageService;
@@ -25,6 +25,34 @@ namespace CallCenter.API.Web.Controllers
             _messageService = messageService;
             _facebbokMessageService = facebbokMessageService;
             _conversationService = conversationService;
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public IHttpActionResult GetAllMessagesForConversation(int conversationId)
+        {
+            var messagesResult = _messageService.GetMessagesToForConversation(conversationId);
+
+            if (messagesResult.IsError)
+                return NotFound();
+
+            var messagesModel = messagesResult.Value;
+
+            var resultMessages = new List<MessageGetViewModel>();
+
+            foreach (var model in messagesModel)
+            {
+                resultMessages.Add(new MessageGetViewModel
+                {
+                    Id = model.Id,
+                    ConversationId = conversationId,
+                    Content = model.Content,
+                    Date = model.Date,
+                    AuthorId = model.AuthorId
+                });
+            }
+
+            return Ok(resultMessages);
         }
 
         [HttpGet]

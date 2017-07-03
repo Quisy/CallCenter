@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CallCenter.API.ViewModels.Message
+namespace CallCenter.Client.Models
 {
-    public class MessageGetViewModel
+    public class MessageModel
     {
         public int Id { get; set; }
 

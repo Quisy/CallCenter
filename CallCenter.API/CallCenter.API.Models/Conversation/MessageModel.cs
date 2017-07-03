@@ -8,6 +8,8 @@ namespace CallCenter.API.Models.Conversation
 {
     public class MessageModel
     {
+        public int Id { get; set; }
+
         public int ConversationId { get; set; }
 
         public string FacebookMessageId { get; set; }

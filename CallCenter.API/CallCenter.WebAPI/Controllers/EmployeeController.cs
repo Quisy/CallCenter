@@ -10,7 +10,7 @@ using CallCenter.API.Web.Controllers.Base;
 namespace CallCenter.API.Web.Controllers
 {
     [Authorize]
-    [RoutePrefix("employee")]
+    [RoutePrefix("api/employee")]
     public class EmployeeController : BaseController
     {
         private readonly IEmployeeService _employeeService;

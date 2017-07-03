@@ -25,7 +25,9 @@
         <Grid Grid.Row="0" Grid.Column="1">
             <TextBlock Text="" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
         </Grid>
-
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button x:Name="FindConversation" Content="Find Conversation"></Button>
+        </StackPanel>
 
         <DockPanel Grid.Row="1" Grid.Column="1">
             <ListView DockPanel.Dock="Top" Height="350px">

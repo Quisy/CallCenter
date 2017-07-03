@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 namespace CallCenter.API.Web.Controllers
 {
     [Authorize]
-    [RoutePrefix("conversation")]
+    [RoutePrefix("api/conversation")]
     public class ConversationController : BaseController
     {
         private readonly IConversationService _conversationService;
