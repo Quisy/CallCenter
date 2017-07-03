@@ -17,6 +17,7 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
         private int _employeeId;
         private int _lastMessageId;
         private int _conversationId;
+        private string _messageToSend;
 
         public EmployeeStatus SelectedStatus { get; set; }
         private readonly IEmployeeService _employeeService;
@@ -27,12 +28,24 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
 
         public IList<EmployeeStatus> Statuses => Enum.GetValues(typeof(EmployeeStatus)).Cast<EmployeeStatus>().ToList();
 
+        public string MessageToSend
+        {
+            get => _messageToSend;
+            set
+            {
+                _messageToSend = value;
+                NotifyOfPropertyChange(() => MessageToSend);
+            }
+        }
+
         public PanelViewModel(IContainerManager containerManager, IEmployeeService employeeService, IConversationService conversationService, IMessageService messageService) : base(containerManager)
         {
             _employeeService = employeeService;
             _conversationService = conversationService;
             _messageService = messageService;
+
             SelectedStatus = EmployeeStatus.Offline;
+            Messages = new BindableCollection<MessageModel>();
         }
 
         protected override async void OnActivate()
@@ -73,7 +86,26 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
 
             var newMessages = messages.Where(m => m.Id > _lastMessageId).ToList();
 
+            if (newMessages.Count == 0)
+                return;
+
             Messages.AddRange(newMessages);
+
+            _lastMessageId = newMessages.Last().Id;
+        }
+
+        public async void SendMessage()
+        {
+            var sentMessage = await _messageService.SendMessage(_conversationId, MessageToSend);
+
+            if (sentMessage == null)
+                return;
+
+            _lastMessageId = sentMessage.Id;
+
+            Messages.Add(sentMessage);
+
+            MessageToSend = "";
         }
 
         private async Task<IList<MessageModel>> GetMessages()

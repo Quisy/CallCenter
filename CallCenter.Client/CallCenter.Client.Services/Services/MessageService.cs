@@ -42,5 +42,31 @@ namespace CallCenter.Client.Services.Services
                 return data;
             }
         }
+
+        public async Task<MessageModel> SendMessage(int conversationId, string content)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+
+                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, $"message");
+                requestMessage.Headers.Add("Authorization", "bearer " + UserToken);
+
+                string jsonData = @"{""Content"":""" + content + @""", ""ConversationId"":""" + conversationId + @"""}";
+                requestMessage.Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                var response = await client.SendAsync(requestMessage);
+
+                if (!response.IsSuccessStatusCode)
+                    return null;
+
+
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                MessageModel data = JsonConvert.DeserializeObject<MessageModel>(responseString);
+
+                return data;
+            }
+        }
     }
 }

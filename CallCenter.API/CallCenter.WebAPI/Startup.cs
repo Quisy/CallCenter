@@ -31,7 +31,7 @@ namespace CallCenter.API.Web
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
 
-            //JobScheduler.Start(container.Resolve<IProcessWorker>());
+            JobScheduler.Start(container.Resolve<IProcessWorker>());
         }
 
         public void ConfigureOAuth(IAppBuilder app)

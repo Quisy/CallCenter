@@ -98,10 +98,13 @@ namespace CallCenter.API.Web.Controllers
 
             var fbMessage = fbMesageResult.Value;
 
-            _messageService.AddMessageToConversation(message.ConversationId,
-                message.Content, fbMessage.Id);
+            var addedMessage = _messageService.AddMessageToConversation(message.ConversationId,
+                message.Content, fbMessage.Id, base.UserId);
 
-            return Ok();
+            if (addedMessage.IsError)
+                return InternalServerError();
+
+            return Ok(addedMessage.Value);
         }
     }
 }

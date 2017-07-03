@@ -7,6 +7,20 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Style x:Key="MessageTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Background" Value="AntiqueWhite"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type ListViewItem}},Path=AuthorId}" Value="">
+                    <Setter Property="Background" Value="Bisque" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
@@ -27,13 +41,38 @@
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button x:Name="FindConversation" Content="Find Conversation"></Button>
+            <Button x:Name="GetNewMessages" Content="GetMessages"></Button>
         </StackPanel>
 
         <DockPanel Grid.Row="1" Grid.Column="1">
-            <ListView DockPanel.Dock="Top" Height="350px">
+            <ListView DockPanel.Dock="Top" Height="350px" ItemsSource="{Binding Messages}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Content}" HorizontalAlignment="Stretch">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Background" Value="AntiqueWhite"></Setter>
+                                    <Setter Property="TextAlignment" Value="Right"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding AuthorId}" Value="{x:Null}">
+                                            <Setter Property="Background" Value="Bisque" />
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
             </ListView>
             <DockPanel DockPanel.Dock="Top">
-                <TextBox Width="350px" DockPanel.Dock="Left"></TextBox>
+                <TextBox Text="{Binding MessageToSend}" Width="350px" DockPanel.Dock="Left"></TextBox>
                 <Button x:Name="SendMessage" Content="Send" DockPanel.Dock="Right"></Button>
             </DockPanel>
         </DockPanel>
