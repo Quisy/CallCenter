@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Caliburn.Micro;
 using CallCenter.Client.Enums;
 using CallCenter.Client.Models;
 using CallCenter.Client.Services.Interfaces.Services;
 using CallCenter.Client.ViewModels.Helpers.Interfaces;
+using CallCenter.Client.ViewModels.Jobs;
 using CallCenter.Client.ViewModels.ViewModels.Base;
+using Action = System.Action;
 
 namespace CallCenter.Client.ViewModels.ViewModels.Conversation
 {
@@ -19,8 +22,21 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
         private int _conversationId;
         private string _messageToSend;
         private ConversationModel _conversation;
+        private EmployeeStatus _selectedStatus;
 
-        public EmployeeStatus SelectedStatus { get; set; }
+        private Action FindConversationAction;
+        private Action GetNewMessagesAction;
+
+        public EmployeeStatus SelectedStatus
+        {
+            get { return _selectedStatus; }
+            set
+            {
+                _selectedStatus = value;
+                NotifyOfPropertyChange(() => SelectedStatus);
+            }
+        }
+
         private readonly IEmployeeService _employeeService;
         private readonly IConversationService _conversationService;
         private readonly IMessageService _messageService;
@@ -47,6 +63,16 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
 
             SelectedStatus = EmployeeStatus.Offline;
             Messages = new BindableCollection<MessageModel>();
+
+            FindConversationAction = FindConversation;
+            GetNewMessagesAction = GetNewMessages;
+        }
+
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+
+            JobScheduler.StartConversationJob(FindConversationAction);
         }
 
         protected override async void OnActivate()
@@ -67,6 +93,10 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
 
             if (conversation == null)
                 return;
+
+            JobScheduler.StopConversationJob();
+            JobScheduler.StartMessageJob(GetNewMessagesAction);
+            SelectedStatus = EmployeeStatus.Busy;
 
             _conversation = conversation;
             _conversationId = conversation.Id;
@@ -114,6 +144,10 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
         {
             await _conversationService.CloseConversation(_conversation);
             Messages.Clear();
+
+            JobScheduler.StopAllJobs();
+
+            JobScheduler.StartConversationJob(FindConversation);
         }
 
         private async Task<IList<MessageModel>> GetMessages()
