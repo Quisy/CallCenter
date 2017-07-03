@@ -79,7 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -90,8 +90,8 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Configuration\Windsor\Installer.cs" />
     <Compile Include="Configuration\Windsor\WindsorExtensions.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -125,6 +125,30 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\CallCenter.Client.Constants\CallCenter.Client.Constants.csproj">
+      <Project>{6b0187d1-5686-4c6b-9a29-18ab3689d28a}</Project>
+      <Name>CallCenter.Client.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Models\CallCenter.Client.Models.csproj">
+      <Project>{b0613bc7-4f54-4c56-8f03-7c463f788a1c}</Project>
+      <Name>CallCenter.Client.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Resources\CallCenter.Client.Resources.csproj">
+      <Project>{a964933a-df7f-4d65-9d02-e33e059699bd}</Project>
+      <Name>CallCenter.Client.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Services.Interfaces\CallCenter.Client.Services.Interfaces.csproj">
+      <Project>{66841249-14ed-453e-8ce4-d92eeb0a2ee0}</Project>
+      <Name>CallCenter.Client.Services.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Services\CallCenter.Client.Services.csproj">
+      <Project>{899e9b9e-4fe9-404e-ac4a-67adb39a0771}</Project>
+      <Name>CallCenter.Client.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCenter.Client.Utils\CallCenter.Client.Utils.csproj">
+      <Project>{71be20c2-9699-4d73-84ed-66095f749706}</Project>
+      <Name>CallCenter.Client.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CallCenter.Client.ViewModels\CallCenter.Client.ViewModels.csproj">
       <Project>{2f3fd465-ebd7-45af-aec6-89f27dafc203}</Project>
       <Name>CallCenter.Client.ViewModels</Name>

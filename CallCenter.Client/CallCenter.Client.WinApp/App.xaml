@@ -4,7 +4,11 @@
              xmlns:local="clr-namespace:CallCenter.Client.WinApp">
     <Application.Resources>
         <ResourceDictionary>
-            <local:AppBootstrapper x:Key="bootstrapper" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:AppBootstrapper x:Key="bootstrapper" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

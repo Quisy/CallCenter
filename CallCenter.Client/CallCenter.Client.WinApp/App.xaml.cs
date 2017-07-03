@@ -13,5 +13,9 @@ namespace CallCenter.Client.WinApp
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+
+        }
     }
 }
