@@ -42,6 +42,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button x:Name="FindConversation" Content="Find Conversation"></Button>
             <Button x:Name="GetNewMessages" Content="GetMessages"></Button>
+            <Button x:Name="CloseConversation" Content="Close Conversation"></Button>
         </StackPanel>
 
         <DockPanel Grid.Row="1" Grid.Column="1">
@@ -73,7 +74,7 @@
             </ListView>
             <DockPanel DockPanel.Dock="Top">
                 <TextBox Text="{Binding MessageToSend}" Width="350px" DockPanel.Dock="Left"></TextBox>
-                <Button x:Name="SendMessage" Content="Send" DockPanel.Dock="Right"></Button>
+                <Button x:Name="SendMessage" Content="Send" DockPanel.Dock="Right" IsDefault="True"></Button>
             </DockPanel>
         </DockPanel>
     </Grid>

@@ -5,9 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using CallCenter.API.Enums;
+using CallCenter.API.Models.Conversation;
 using CallCenter.API.Services.Interfaces.Services.Conversation;
 using CallCenter.API.ViewModels.Conversation;
 using CallCenter.API.Web.Controllers.Base;
+using CallCenter.API.Workers.Interfaces.Workers;
 using Microsoft.AspNet.Identity;
 
 namespace CallCenter.API.Web.Controllers
@@ -17,10 +20,12 @@ namespace CallCenter.API.Web.Controllers
     public class ConversationController : BaseController
     {
         private readonly IConversationService _conversationService;
+        private readonly IActivitiWorker _activitiWorker;
 
-        public ConversationController(IConversationService conversationService)
+        public ConversationController(IConversationService conversationService, IActivitiWorker activitiWorker)
         {
             _conversationService = conversationService;
+            _activitiWorker = activitiWorker;
         }
 
         [HttpGet]
@@ -43,6 +48,31 @@ namespace CallCenter.API.Web.Controllers
             };
 
             return Ok(conversation);
+        }
+
+        [HttpPost]
+        [Route("close")]
+        public async Task<IHttpActionResult> CloseConversation(ConversationCloseViewModel conversation)
+        {
+            var taskResult = await _activitiWorker.GetCurrentTaskForInstance(conversation.ProcessInstanceId);
+
+            if (taskResult.IsError)
+                return InternalServerError();
+
+            await _activitiWorker.CompleteTaskAndGetNextAsync(conversation.ProcessInstanceId, taskResult.Value.Id);
+
+            var convertsationModel = new ConversationModel
+            {
+                Id = conversation.Id,
+                CustomerId = null,
+                AssignedEmployeeId = null,
+                ProcessInstanceId = null,
+                ProcessTask = TalkProcessTask.None
+            };
+
+            _conversationService.Update(convertsationModel);
+
+            return Ok();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
         private int _lastMessageId;
         private int _conversationId;
         private string _messageToSend;
+        private ConversationModel _conversation;
 
         public EmployeeStatus SelectedStatus { get; set; }
         private readonly IEmployeeService _employeeService;
@@ -67,6 +68,7 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
             if (conversation == null)
                 return;
 
+            _conversation = conversation;
             _conversationId = conversation.Id;
 
             var messages = await GetMessages();
@@ -106,6 +108,12 @@ namespace CallCenter.Client.ViewModels.ViewModels.Conversation
             Messages.Add(sentMessage);
 
             MessageToSend = "";
+        }
+
+        public async void CloseConversation()
+        {
+            await _conversationService.CloseConversation(_conversation);
+            Messages.Clear();
         }
 
         private async Task<IList<MessageModel>> GetMessages()

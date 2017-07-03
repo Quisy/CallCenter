@@ -43,6 +43,20 @@ namespace CallCenter.Client.Services.Services
             }
         }
 
-       
+        public async Task CloseConversation(ConversationModel conversation)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiUrl);
+
+                HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "conversation/close");
+                requestMessage.Headers.Add("Authorization", "bearer " + UserToken);
+
+                string jsonData = JsonConvert.SerializeObject(conversation);
+                requestMessage.Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                await client.SendAsync(requestMessage);
+            }
+        }
     }
 }

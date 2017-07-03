@@ -10,5 +10,7 @@ namespace CallCenter.Client.Services.Interfaces.Services
     public interface IConversationService : IService
     {
         Task<ConversationModel> FindConversationForEmployee(int employeeId);
+
+        Task CloseConversation(ConversationModel conversation);
     }
 }

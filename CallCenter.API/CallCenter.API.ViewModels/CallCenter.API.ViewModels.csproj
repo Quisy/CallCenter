@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversation\ConversationCloseViewModel.cs" />
     <Compile Include="Conversation\ConversationGetViewModel.cs" />
     <Compile Include="Message\MessageAddViewModel.cs" />
     <Compile Include="Message\MessageGetViewModel.cs" />
